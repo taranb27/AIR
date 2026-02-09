@@ -117,7 +117,7 @@ export default function Home() {
           </nav>
 
           {/* landing page content*/}
-          <section className="grid h-[calc(100vh-96px)]  grid-rows-[1fr_auto] z-10p-4 sm:p-6">
+          <section className="grid h-[calc(100vh-96px)]  grid-rows-[1fr_auto] p-4 sm:p-6">
 
             <div className=" flex items-center justify-center">
               <div className="text-center leading-[0.9] tracking-[-0.04em]">
@@ -195,9 +195,6 @@ export default function Home() {
       <footer className=" sticky top-0 h-screen bg-black text-white flex items-center justify-center z-30">
         <div className="w-full max-w-[1600px] px-6 text-center">
         
-          
-          
-
           {/* Top line */}
           <div className="border-t border-white/40 mb-4" />
 
