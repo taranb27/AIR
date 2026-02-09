@@ -109,10 +109,12 @@ export default function Home() {
           <nav className="mx-auto max-w-[1600px] px-6 py-4">
           <div className="flex items-center justify-between border-b border-black/40 pb-4">
             <div className="flex items-center gap-8 text-sm">
-              <a className="text-black/70 hover:text-black transition">Services</a>
+              <a href="#services" className="text-black/70 hover:text-black transition">Services</a>
               <a className="text-black/70 hover:text-black transition">Case Study</a>
             </div>
-            <button className="rounded-full border border-black/20 px-5 py-2 text-sm hover:bg-black/5 transition"> Start a Conversation </button>
+            <a href="mailto:taran@airdevconsultancy.co.uk?subject=Start%20a%20Conversation" className="inline-block">
+              <button className="rounded-full border border-black/20 px-5 py-2 text-sm hover:bg-black/5 transition"> Start a Conversation </button>
+            </a>
           </div>
           </nav>
 
@@ -152,8 +154,7 @@ export default function Home() {
       {/* services */}
       <div className="sticky top-0 w-screen bg-[#0a0a0a] z-20">
         <div className="h-full w-full rounded-[32px] sm:rounded-[44px] bg-[#f6f6f6] overflow-hidden flex-col">
-        <section
-          className=" sticky top-0 h-screen w-screen flex flex-col justify-between bg-[#f6f6f6] text-[#0a0a0a] px-6 z-20" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onWheel={onWheel} >
+        <section id="services" className=" sticky top-0 h-screen w-screen flex flex-col justify-between bg-[#f6f6f6] text-[#0a0a0a] px-6 z-20" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd} onWheel={onWheel} >
           <div className="mx-auto w-full max-w-[1600px] pt-10"><div className="border-t border-black/20" /></div>
 
           <div className="flex-1 flex items-center justify-center">
@@ -194,31 +195,13 @@ export default function Home() {
 
       <footer className=" sticky top-0 h-screen bg-black text-white flex items-center justify-center z-30">
         <div className="w-full max-w-[1600px] px-6 text-center">
-        
-          {/* Top line */}
-          <div className="border-t border-white/40 mb-4" />
-
-          {/* WORK WITH US */}
-          <div
-            className="uppercase tracking-tight leading-none"
-            style={{ fontSize: "clamp(64px, 12.5vw, 200px)" }}
-          >
-            Work with us
-          </div>
-
-          {/* Middle line */}
-          <div className="border-t border-white/40 my-4" />
-
-          {/* HIT US UP */}
-          <div
-            className="uppercase tracking-tight leading-none"
-            style={{ fontSize: "clamp(64px, 12.5vw, 200px)" }}
-          >
-            Hit us up
-          </div>
-
-          {/* Bottom line */}
-          <div className="border-t border-white/40 mt-4" />
+          <a href="mailto:taran@airdevconsultancy.co.uk?subject=Start%20a%20Conversation" className="inline-block">
+            <div className="border-t border-white/40 mb-4" />
+            <div className="uppercase tracking-tight leading-none" style={{ fontSize: "clamp(64px, 12.5vw, 200px)" }} >Work with us</div>
+            <div className="border-t border-white/40 my-4" />
+            <div className="uppercase tracking-tight leading-none" style={{ fontSize: "clamp(64px, 12.5vw, 200px)" }} > Hit us up </div>
+            <div className="border-t border-white/40 mt-4" />
+          </a>
 
         </div>
       </footer>
