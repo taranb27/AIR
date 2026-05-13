@@ -667,7 +667,7 @@ function AirVoicePlayer() {
           return (
             <button key={i} onClick={() => toggle(i)} style={{
               display: "inline-flex", alignItems: "center", gap: "6px",
-              padding: "6px 12px", borderRadius: "60px", border: "none", cursor: "pointer",
+              padding: "6px 12px", borderRadius: "60px", cursor: "pointer",
               background: active ? "rgba(166,151,180,0.28)" : "rgba(255,255,255,0.07)",
               border: `1px solid ${active ? "rgba(166,151,180,0.6)" : "rgba(255,255,255,0.12)"}`,
               color: active ? "#ffffff" : "rgba(255,255,255,0.6)",
