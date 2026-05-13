@@ -13,8 +13,9 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "A.I.R",
-  description: "A.I.R Development Consultancy",
+  title: "A.I.R — Artificial Intelligence & Robotics",
+  description:
+    "A.I.R is a UK-based AI and Robotics consulting firm specialising in hospitality. We build intelligent systems for interactions, operations, and physical automation.",
 };
 
 export default function RootLayout({
