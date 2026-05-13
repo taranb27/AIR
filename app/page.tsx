@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 // ─── Arrow icon ───────────────────────────────────────────────────────────────
 const Arrow = () => (
@@ -140,7 +140,7 @@ function Nav() {
           fontSize: "13px", color: subCol, letterSpacing: "0.01em",
           pointerEvents: "none", whiteSpace: "nowrap", transition: "color 0.35s",
         }}>
-          AI &amp; Robotics Consultants
+          Artificial Intelligence &amp; Robotics Consultants
         </span>
 
         {/* Hamburger */}
@@ -271,22 +271,18 @@ function Hero() {
       overflow: "hidden",
       background: "#000000", // hybridmind hero: pure black
     }}>
-      {/* Animated background orbs — living feel until video is added */}
-      <div style={{ position: "absolute", inset: 0, pointerEvents: "none" }}>
-        <div className="orb-a" style={{ position: "absolute", top: "20%", left: "30%", width: "55vw", height: "55vw", borderRadius: "50%", background: "radial-gradient(ellipse at center, rgba(30,28,24,0.95) 0%, transparent 70%)", filter: "blur(72px)" }} />
-        <div className="orb-b" style={{ position: "absolute", top: "40%", left: "55%", width: "40vw", height: "40vw", borderRadius: "50%", background: "radial-gradient(ellipse at center, rgba(22,20,14,0.85) 0%, transparent 70%)", filter: "blur(80px)" }} />
-        <div className="orb-c" style={{ position: "absolute", top: "-10%", left: "5%", width: "35vw", height: "35vw", borderRadius: "50%", background: "radial-gradient(ellipse at center, rgba(18,18,22,0.7) 0%, transparent 70%)", filter: "blur(90px)" }} />
-      </div>
-
-      {/* Scattered dots — hybridmind uses #a697b4 violet; A.I.R uses warm champagne */}
-      <HeroDots />
-
-      {/* Video slot — uncomment when you have footage
-      <video autoPlay muted loop playsInline style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", opacity:0.4 }}>
+      {/* Video background — loop attr + onEnded fallback for browsers that stall */}
+      <video
+        autoPlay muted loop playsInline
+        onEnded={e => { e.currentTarget.currentTime = 0; e.currentTarget.play(); }}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}
+      >
         <source src="/hero.mp4" type="video/mp4" />
       </video>
-      <div style={{ position:"absolute", inset:0, background:"rgba(0,0,0,0.55)" }} />
-      */}
+      {/* Base dark layer */}
+      <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.62)" }} />
+      {/* Brand colour tint — purple wash matching site palette */}
+      <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg, rgba(139,125,152,0.18) 0%, rgba(80,60,100,0.22) 50%, rgba(0,0,0,0.1) 100%)" }} />
 
       {/* Content */}
       <div style={{ position: "relative", zIndex: 10, textAlign: "center", padding: "0 24px", maxWidth: "900px", width: "100%" }}>
@@ -627,6 +623,78 @@ const CASES = [
   },
 ];
 
+// ─── AIR Voice audio demo player ─────────────────────────────────────────────
+const VOICE_DEMOS = [
+  { label: "Booking",            src: "/voice/booking 3.m4a" },
+  { label: "Amend Booking",      src: "/voice/booking to cancel 3.m4a" },
+  { label: "Cancel Booking",     src: "/voice/cancel booking 3.m4a" },
+  { label: "Post-Cancel",        src: "/voice/cancelled booking 3.m4a" },
+  { label: "Menu Suggestions",   src: "/voice/Menu suggestions 3.m4a" },
+  { label: "Complaint Handling", src: "/voice/angry amie 2.m4a" },
+  { label: "Multilingual",       src: "/voice/hindi 2.m4a" },
+];
+
+function AirVoicePlayer() {
+  const [playing, setPlaying] = useState<number | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  function toggle(i: number) {
+    if (playing === i) {
+      audioRef.current?.pause();
+      setPlaying(null);
+    } else {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+      const a = new Audio(VOICE_DEMOS[i].src);
+      a.onended = () => setPlaying(null);
+      a.play();
+      audioRef.current = a;
+      setPlaying(i);
+    }
+  }
+
+  useEffect(() => () => { audioRef.current?.pause(); }, []);
+
+  return (
+    <div style={{ marginBottom: "24px", position: "relative" }}>
+      <p style={{ fontSize: "10px", color: "rgba(255,255,255,0.35)", letterSpacing: "0.16em", textTransform: "uppercase", marginBottom: "12px", fontWeight: 500 }}>
+        Live Demo — tap to listen
+      </p>
+      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+        {VOICE_DEMOS.map((d, i) => {
+          const active = playing === i;
+          return (
+            <button key={i} onClick={() => toggle(i)} style={{
+              display: "inline-flex", alignItems: "center", gap: "6px",
+              padding: "6px 12px", borderRadius: "60px", border: "none", cursor: "pointer",
+              background: active ? "rgba(166,151,180,0.28)" : "rgba(255,255,255,0.07)",
+              border: `1px solid ${active ? "rgba(166,151,180,0.6)" : "rgba(255,255,255,0.12)"}`,
+              color: active ? "#ffffff" : "rgba(255,255,255,0.6)",
+              fontSize: "11px", fontWeight: 500, letterSpacing: "0.02em",
+              transition: "all 0.18s",
+            } as React.CSSProperties}>
+              {/* Play / pause icon */}
+              {active ? (
+                <span style={{ display: "flex", gap: "2px", alignItems: "center" }}>
+                  <span style={{ width: 2, height: 10, background: "#a697b4", borderRadius: 2, animation: "bar-a 0.6s ease-in-out infinite alternate" }} />
+                  <span style={{ width: 2, height: 7,  background: "#a697b4", borderRadius: 2, animation: "bar-b 0.6s ease-in-out infinite alternate" }} />
+                  <span style={{ width: 2, height: 10, background: "#a697b4", borderRadius: 2, animation: "bar-a 0.6s ease-in-out infinite alternate 0.15s" }} />
+                </span>
+              ) : (
+                <svg width="8" height="9" viewBox="0 0 8 9" fill="rgba(255,255,255,0.5)">
+                  <path d="M0 0L8 4.5L0 9V0Z" />
+                </svg>
+              )}
+              {d.label}
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
+}
+
 function CaseStudies() {
   return (
     <section id="work" style={{ background: "#ffffff", paddingTop: "120px", paddingBottom: "100px" }}>
@@ -704,7 +772,6 @@ function CaseStudies() {
                       <p style={{
                         fontSize: "clamp(22px, 2.4vw, 30px)", fontWeight: 700,
                         letterSpacing: "-0.03em", lineHeight: 1,
-                        // AIR Voice uses gold metrics; AIR Flow uses white
                         color: c.light ? "#a697b4" : "#ffffff",
                       }}>
                         {m.value}
@@ -715,6 +782,9 @@ function CaseStudies() {
                     </div>
                   ))}
                 </div>
+
+                {/* Audio demo player — AIR Voice card only */}
+                {i === 0 && <AirVoicePlayer />}
 
                 <h3 style={{
                   fontSize: "clamp(18px, 1.9vw, 24px)", fontWeight: 700,

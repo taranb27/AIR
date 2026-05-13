@@ -59,6 +59,16 @@ body {
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* ── Audio waveform bars (AIR Voice player) ────────────────────────────────── */
+@keyframes bar-a {
+  from { height: 4px;  opacity: 0.6; }
+  to   { height: 10px; opacity: 1;   }
+}
+@keyframes bar-b {
+  from { height: 7px;  opacity: 0.5; }
+  to   { height: 4px;  opacity: 0.9; }
+}
+
 /* ── Responsive ────────────────────────────────────────────────────────────── */
 @media (max-width: 768px) {
   /* Nav */
