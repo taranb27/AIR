@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 const SITE_URL = "https://airdevconsultancy.co.uk";
+const SITE_NAME = "AIR Development Consultancy";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
@@ -22,7 +23,7 @@ export const metadata: Metadata = {
     template: "%s | A.I.R",
   },
   description:
-    "A.I.R is a UK-based AI and automation consultancy for service businesses. We build AI voice agents, lead generation systems, workflow automation, and client intake tools for estate agents, law firms, recruitment agencies, IFAs, and hospitality groups.",
+    "A.I.R builds AI systems for UK service businesses — estate agents, law firms, recruiters, IFAs, and hospitality. We automate calls, admin, and workflows so your team focuses on what matters.",
 
   keywords: [
     "AI automation UK service businesses",
@@ -42,9 +43,9 @@ export const metadata: Metadata = {
     "AI for professional services UK",
   ],
 
-  authors: [{ name: "A.I.R", url: SITE_URL }],
-  creator: "A.I.R",
-  publisher: "A.I.R",
+  authors: [{ name: SITE_NAME, url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
 
   robots: {
     index: true,
@@ -61,10 +62,10 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_GB",
     url: SITE_URL,
-    siteName: "A.I.R",
+    siteName: SITE_NAME,
     title: "A.I.R — AI & Automation Consultants for UK Service Businesses",
     description:
-      "UK-based AI and automation consultancy for service businesses. AI voice agents, lead gen, workflow automation, and client intake for estate agents, law firms, recruitment, IFAs, and hospitality.",
+      "A.I.R builds AI systems for UK service businesses — estate agents, law firms, recruiters, IFAs, and hospitality. We automate calls, admin, and workflows so your team focuses on what matters.",
     images: [
       {
         url: "/og-image.jpg",
@@ -79,7 +80,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "A.I.R — AI & Automation Consultants for UK Service Businesses",
     description:
-      "UK-based AI and automation consultancy for service businesses. AI voice agents, lead gen, workflow automation, and client intake for estate agents, law firms, recruitment, IFAs, and hospitality.",
+      "A.I.R builds AI systems for UK service businesses — estate agents, law firms, recruiters, IFAs, and hospitality. We automate calls, admin, and workflows so your team focuses on what matters.",
     images: ["/og-image.jpg"],
   },
 
@@ -88,7 +89,6 @@ export const metadata: Metadata = {
   },
 
   verification: {
-    // Add your Google Search Console verification token here when you have it:
     // google: "your-token-here",
   },
 };
@@ -101,48 +101,57 @@ export default function RootLayout({
   return (
     <html lang="en-GB">
       <head>
-        {/* JSON-LD structured data — tells Google exactly what this business is */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "ProfessionalService",
-              name: "A.I.R",
-              alternateName: "Artificial Intelligence & Robotics",
-              url: SITE_URL,
-              email: "taran@airdevconsultancy.co.uk",
-              description:
-                "UK-based AI and automation consultancy for service businesses. Services include AI voice agents, lead generation, client intake automation, document automation, workflow automation, and AI strategy for estate agents, law firms, recruitment agencies, IFAs, and hospitality groups.",
-              areaServed: {
-                "@type": "Country",
-                name: "United Kingdom",
+            __html: JSON.stringify([
+              {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                name: SITE_NAME,
+                alternateName: "A.I.R",
+                url: SITE_URL,
               },
-              serviceType: [
-                "AI Voice Agents",
-                "AI Lead Generation",
-                "Client Intake Automation",
-                "Document Automation",
-                "Workflow Automation",
-                "CRM Integration",
-                "AI Strategy & Consulting",
-                "AI Dashboards & Analytics",
-                "Follow-Up Sequences",
-              ],
-              knowsAbout: [
-                "Artificial Intelligence",
-                "Business Automation",
-                "AI Voice Agents",
-                "Lead Generation Automation",
-                "Conversational AI",
-                "Process Automation",
-                "Estate Agent Technology",
-                "Legal Technology",
-                "Recruitment Technology",
-                "Hospitality Technology",
-              ],
-              sameAs: [],
-            }),
+              {
+                "@context": "https://schema.org",
+                "@type": "ProfessionalService",
+                name: SITE_NAME,
+                alternateName: "A.I.R — Artificial Intelligence & Robotics",
+                url: SITE_URL,
+                email: "taran@airdevconsultancy.co.uk",
+                description:
+                  "UK-based AI and automation consultancy for service businesses. We build AI voice agents, lead generation, client intake automation, workflow automation, and AI strategy for estate agents, law firms, recruitment agencies, IFAs, and hospitality groups.",
+                areaServed: {
+                  "@type": "Country",
+                  name: "United Kingdom",
+                },
+                serviceType: [
+                  "AI Voice Agents",
+                  "AI Lead Generation",
+                  "Client Intake Automation",
+                  "Document Automation",
+                  "Workflow Automation",
+                  "CRM Integration",
+                  "AI Strategy & Consulting",
+                  "AI Dashboards & Analytics",
+                  "Follow-Up Sequences",
+                ],
+                knowsAbout: [
+                  "Artificial Intelligence",
+                  "Business Automation",
+                  "AI Voice Agents",
+                  "Lead Generation Automation",
+                  "Conversational AI",
+                  "Process Automation",
+                  "Estate Agent Technology",
+                  "Legal Technology",
+                  "Recruitment Technology",
+                  "Hospitality Technology",
+                  "Financial Adviser Technology",
+                ],
+                sameAs: [],
+              },
+            ]),
           }}
         />
       </head>

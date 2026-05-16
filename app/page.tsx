@@ -210,7 +210,7 @@ function MenuOverlay({ onClose, links }: { onClose: () => void; links: { href: s
         {/* Top bar — logo only */}
         <div style={{ height: "68px", display: "flex", alignItems: "center", flexShrink: 0 }}>
           <a href="/" onClick={onClose} style={{ textDecoration: "none" }}>
-            <img src="/air-logo.png" alt="A.I.R" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+            <img src="/air-logo.png" alt="A.I.R" style={{ height: "40px", width: "40px", objectFit: "cover", borderRadius: "8px" }} />
           </a>
         </div>
 
@@ -335,7 +335,7 @@ function Nav({ introGone, navTextRef }: { introGone: boolean; navTextRef: React.
         <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none", flexShrink: 0,
           opacity: introGone ? 1 : 0, transition: "opacity 0.5s ease",
         }}>
-          <img src="/air-logo.png" alt="A.I.R" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+          <img src="/air-logo.png" alt="A.I.R" style={{ height: "40px", width: "40px", objectFit: "cover", borderRadius: "8px" }} />
         </a>
         <span ref={navTextRef} style={{
           position: "absolute", left: "50%", transform: "translateX(-50%)",
@@ -375,13 +375,13 @@ function Nav({ introGone, navTextRef }: { introGone: boolean; navTextRef: React.
 function Hero() {
   return (
     <section style={{
-      position: "relative", height: "100vh",
+      position: "relative", height: "100vh", minHeight: "-webkit-fill-available",
       display: "flex", alignItems: "center", justifyContent: "center",
       overflow: "hidden", background: "#000000",
     }}>
-      <video autoPlay muted loop playsInline
+      <video autoPlay muted loop playsInline disablePictureInPicture
         onEnded={e => { e.currentTarget.currentTime = 0; e.currentTarget.play(); }}
-        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover" }}>
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%", objectFit: "cover", pointerEvents: "none" }}>
         <source src="/hero.mp4" type="video/mp4" />
       </video>
       <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.62)" }} />
@@ -1180,7 +1180,7 @@ function Footer() {
           {/* Brand */}
           <div>
             <div style={{ marginBottom: "16px" }}>
-              <img src="/air-logo.png" alt="A.I.R" style={{ height: "36px", width: "auto", objectFit: "contain" }} />
+              <img src="/air-logo.png" alt="A.I.R" style={{ height: "40px", width: "40px", objectFit: "cover", borderRadius: "8px" }} />
             </div>
             <p style={{ fontSize: "14px", color: "rgba(255,255,255,0.4)", lineHeight: 1.75, maxWidth: "280px", marginBottom: "24px" }}>
               Serving estate agents, law firms, recruitment agencies, financial advisers, and hospitality businesses across the UK.
